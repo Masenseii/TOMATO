@@ -39,7 +39,7 @@ def capture_image(folder="Captured_Images"):
   if not os.path.exists(folder):
     os.mkdirs(folder)
     image_path = os.path.join(folder, "captured_image.jpg")
-    subprocess.run("[libcamera-still", "-o", image_path]")
+    subprocess.run(["libcamera-still", "-o", image_path])
     return image_path
 
 # Initializing session state for the captured image
