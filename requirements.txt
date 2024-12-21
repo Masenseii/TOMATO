@@ -50,7 +50,8 @@ setuptools==65.5.0
 six==1.16.0
 smmap==5.0.1
 streamlit==1.40.1
-tenacity==9.0.0streamlit
+tenacity==9.0.0
+streamlit==1.40.1
 opencv-python-headless
 numpy
 pillow
