@@ -51,11 +51,12 @@ six==1.16.0
 smmap==5.0.1
 streamlit==1.40.1
 tenacity==9.0.0
-streamlit==1.40.1
 opencv-python-headless
-numpy
-pillow
-tensorflow==2.18.0
+tensorboard==2.18.0
+tensorboard-data-server==0.7.2
+tensorflow==2.18.
+tensorflow_intel==2.18.0
+tensorflow-io-gcs-filesystem==0.31.0
 termcolor==2.5.0
 toml==0.10.2
 tornado==6.4.2
