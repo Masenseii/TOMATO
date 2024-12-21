@@ -54,7 +54,7 @@ tenacity==9.0.0streamlit
 opencv-python-headless
 numpy
 pillow
-tensorflow==2.11.0
+tensorflow==2.18.0
 termcolor==2.5.0
 toml==0.10.2
 tornado==6.4.2
