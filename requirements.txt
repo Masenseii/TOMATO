@@ -61,6 +61,8 @@ typing_extensions==4.12.2
 tzdata==2024.2
 opencv-contrib-python==4.10.0.84
 opencv
+python_version==3.11.*
+
 
 urllib3==2.2.3
 watchdog==6.0.0
