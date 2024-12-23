@@ -131,7 +131,7 @@ def load_history():
         return pd.DataFrame(columns=["Timestamp", "Image Name", "Disease Detected", "Confidence"])
 
 # Function to save a new prediction entry
-def save_prediction(image_name, predicted_class, prediction_probs):
+def save_prediction(image_name, predicted_class, result_index):
     # Load the existing history
     history = load_history()
     
@@ -139,8 +139,8 @@ def save_prediction(image_name, predicted_class, prediction_probs):
     new_entry = {
         "Timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "Image Name": image_name,
-        "Disease Detecte": predicted_class,
-        "Confidence": prediction_probs
+        "Disease Detected": predicted_class,
+        "Confidence": result_index
     }
     
     # Append the new entry to the history
@@ -355,7 +355,7 @@ elif app_mode == 'Disease Recognition':
                                 time.sleep(0.05)  # Simulate some work
                             progress.progress(i + 1)
 
-                            save_prediction(image_name, predicted_class, prediction_probs)
+                            save_prediction(image_name, predicted_class, result_index)
 
                             if predicted_class in recommendations:
                                 # Display the recommendation for the predicted class
