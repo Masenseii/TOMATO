@@ -145,7 +145,7 @@ def save_prediction(image_name, predicted_class, prediction_probs, recommendatio
     }
     
     # Append the new entry to the history
-    history = history.append(new_entry, ignore_index=True)
+    history = pd.concat([history, pd.DataFrame([new_entry])], ignore_index=True)
     
     # Save the updated history back to the CSV file
     history.to_csv(HISTORY_FILE, index=False)
