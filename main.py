@@ -559,7 +559,19 @@ elif app_mode == "Contact/Support":
         # Optionally, save the details to a file or send an email here
       else:
           st.error("Please fill in all fields.")
-  
+  # Contact Information Section
+    st.write("### Or reach us directly:")
+    st.write("You can also contact us via phone for quicker assistance:")
+    
+    # phone numbers
+    st.write("📞 **Phone Number**: +254714839612")
+    st.write("📞 **Phone Number**: +254725428512")
+    st.write("📞 **Phone Number**: +254734404781")
+    
+    # Optional: You can also provide an email address if needed
+    st.write("📧 **Email**: sharleensiele@gmail.com")
+    st.write("📧 **Email**: brunoshedy@gmail.com")
+    st.write("📧 **Email**: markire.07@gmail.com")
 
   
 
