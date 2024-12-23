@@ -117,9 +117,14 @@ def predict_images_in_folder(folder_path, class_name, model):
 # Function to load the history of predictions
 def load_history():
     if os.path.exists(HISTORY_FILE):
-        return pd.read_csv(HISTORY_FILE)
+        try:
+            # Attempt to read the CSV file
+            return pd.read_csv(HISTORY_FILE)
+        except pd.errors.EmptyDataError:
+            # If the file is empty, return an empty DataFrame with the correct columns
+            return pd.DataFrame(columns=["Timestamp", "Image Name", "Disease Detected", "Confidence", "Recommended Actions"])
     else:
-        # Create a new dataframe if the file doesn't exist
+        # Create a new DataFrame if the file doesn't exist
         return pd.DataFrame(columns=["Timestamp", "Image Name", "Disease Detected", "Confidence", "Recommended Actions"])
 
 # Function to save a new prediction entry
