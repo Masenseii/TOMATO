@@ -136,7 +136,7 @@ def save_prediction(image_name, predicted_class, confidence, recommendations):
     new_entry = {
         "Timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "Image Name": image_name,
-        "Disease Detected": predicted_class,
+        "Disease Detecte": predicted_class,
         "Confidence": probability_probs,
         "Recommended Actions": recommendations
     }
@@ -353,7 +353,7 @@ elif app_mode == 'Disease Recognition':
                                 time.sleep(0.05)  # Simulate some work
                             progress.progress(i + 1)
 
-                            save_prediction(image_name, disease_detected, confidence, recommended_actions)
+                            save_prediction(image_name, predicted_class, confidence, recommended_actions)
 
                             if predicted_class in recommendations:
                                 # Display the recommendation for the predicted class
@@ -391,7 +391,7 @@ elif app_mode == 'Disease Recognition':
                                 time.sleep(0.05)  # Simulate some work
                             progress.progress(i + 1)
 
-                            save_prediction(image_name, disease_detected, confidence, recommended_actions)
+                            save_prediction(image_name, predicted_class, confidence, recommended_actions)
                             if predicted_class in recommendations:
                                 # Display the recommendation for the predicted class
                                 display_recommendation(predicted_class)
@@ -418,7 +418,7 @@ elif app_mode == 'Disease Recognition':
                      time.sleep(0.05)  # Simulate some work
                 progress.progress(i + 1)
 
-                save_prediction(image_name, disease_detected, confidence, recommended_actions)
+                save_prediction(image_name, predicted_class, confidence, recommended_actions)
                 if predicted_class in recommendations:
                     # Display the recommendation for the predicted class
                      display_recommendation(predicted_class)
