@@ -76,10 +76,11 @@ def predict(image_path, model):
         # Make prediction
         prediction_probs = model.predict(input_arr)
         result_index = int(tf.argmax(prediction_probs, axis=1).numpy()[0])
+        confidence = prediction_probs[0][result_index]
         print("Prediction probabilities:", prediction_probs)  # Log prediction probabilities
         print("Predicted class index:", result_index)  # Log predicted class index
 
-        return result_index, prediction_probs
+        return result_index, prediction_probs, confidence
     except Exception as e:
         st.error(f"Error during prediction: {e}")
         return None, None
@@ -132,8 +133,6 @@ def load_history():
 
 # Function to save a new prediction entry
 def save_prediction(image_name, predicted_class, confidence):
-    #Extract the confidence for the predicted class
-    confidence = prediction_probs[predicted_class]
     # Load the existing history
     history = load_history()
     
