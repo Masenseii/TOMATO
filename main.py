@@ -284,7 +284,7 @@ elif app_mode == 'Disease Recognition':
     import time
     st.header('Disease Recognition')
 
-    input_option = st.radio("Choose an input method:", ("upload from device","Take Photo"))
+    input_option = st.radio("Choose an input method:", ("upload from device","Take Photo","CSI Camera"))
     if input_option == "upload from device":
         #Allow user to upload an image file
         uploaded_file = st.file_uploader("Choose a tomato image...", type=["jpg", "jpeg", "png"])
@@ -354,3 +354,30 @@ elif app_mode == 'Disease Recognition':
                                 # Display the recommendation for the predicted class
                                 display_recommendation(predicted_class)
 
+
+    elif input_option == "CSI Camera":
+      st.info("This option will trigger the CSI camera to capture an image.")
+      #Button to trigger CSI Camera
+      if st.button('Start Image Capture'):
+        image = Image.open(image_path)
+        st.image(image, caption="Captured Image", use_container_width=True)
+
+        #Prediction Button
+        if st.button('Predict'):
+          with st.spinner('Please wait...'):
+            model = load_model() # Load the model
+            if model:
+              result_index, prediction_probs = predict(image_path, model)
+              if result_index is not None:
+                predicted_class = class_name[result_index]
+                st.success(f'Model is predicting it is {Predicted_class}')
+                progress = st.progress(0)
+                for i in range(100):
+                     time.sleep(0.05)  # Simulate some work
+                progress.progress(i + 1)
+
+
+                if predicted_class in recommendations:
+                    # Display the recommendation for the predicted class
+                     display_recommendation(predicted_class)
+      
