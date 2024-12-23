@@ -15,11 +15,11 @@ import threading
 import subprocess
 
 # Class names
-class_name = ['Bacterial spot__Blight',
+class_name = ['Bacterial Spot__Blight',
               'Not Recognized',
-              'Tomato Leaf Miner Flies',
-              'Tomato Healthy',
               'Tobacco Caterpillar',
+              'Tomato Healthy',
+              'Tomato Leaf Miner Flies',
               'Tomato Leaf Curl']
 
 # Loading the trained model
