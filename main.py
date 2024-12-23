@@ -76,11 +76,10 @@ def predict(image_path, model):
         # Make prediction
         prediction_probs = model.predict(input_arr)
         result_index = int(tf.argmax(prediction_probs, axis=1).numpy()[0])
-        confidence = prediction_probs[0][result_index]
         print("Prediction probabilities:", prediction_probs)  # Log prediction probabilities
         print("Predicted class index:", result_index)  # Log predicted class index
 
-        return result_index, confidence
+        return result_index, prediction_probs
     except Exception as e:
         st.error(f"Error during prediction: {e}")
         return None, None
@@ -126,13 +125,13 @@ def load_history():
             return pd.read_csv(HISTORY_FILE)
         except pd.errors.EmptyDataError:
             # If the file is empty, return an empty DataFrame with the correct columns
-            return pd.DataFrame(columns=["Timestamp", "Image Name", "Disease Detected", "Confidence"])
+            return pd.DataFrame(columns=["Timestamp", "Image Name", "Disease Detected"])
     else:
         # Create a new DataFrame if the file doesn't exist
-        return pd.DataFrame(columns=["Timestamp", "Image Name", "Disease Detected", "Confidence"])
+        return pd.DataFrame(columns=["Timestamp", "Image Name", "Disease Detected"])
 
 # Function to save a new prediction entry
-def save_prediction(image_name, predicted_class, confidence):
+def save_prediction(image_name, predicted_class):
     # Load the existing history
     history = load_history()
     
@@ -140,8 +139,7 @@ def save_prediction(image_name, predicted_class, confidence):
     new_entry = {
         "Timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "Image Name": image_name,
-        "Disease Detected": predicted_class,
-        "Confidence": confidence
+        "Disease Detected": predicted_class
     }
     
     # Append the new entry to the history
