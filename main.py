@@ -414,6 +414,7 @@ elif app_mode == 'Disease Recognition':
       #Button to trigger CSI Camera
       if st.button('Start Image Capture'):
         image = Image.open(image_path)
+        image_name = image.name 
         st.image(image, caption="Captured Image", use_container_width=True)
 
         #Prediction Button
