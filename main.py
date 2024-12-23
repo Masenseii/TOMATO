@@ -269,7 +269,8 @@ app_mode = st.sidebar.selectbox('Select Page', ['Home',
                                                 'Disease Recognition',
                                                 'Disease Management History',
                                                 'Feedback/Reviews',
-                                                'Settings'
+                                                'Settings',
+                                                'Contact/Support'
                                                 ])
 
 # Home Page
@@ -534,6 +535,31 @@ elif app_mode == "Disease Management History":
       st.dataframe(history)
   else:
       st.write("No predictions have been made yet.")
+
+elif app_mode == "Contact/Support":
+  st.title("Contact / Support")
+  # Instructions
+  st.write("If you have any questions or need support, please fill out the form below:")
+  # Form for capturing user details
+  name = st.text_input("Your Name")
+  email = st.text_input("Your Email")
+  message = st.text_area("Your Message")
+
+  # File upload option
+  uploaded_file = st.file_uploader("Upload a file (optional)", type=["jpg", "png", "pdf", "docx", "txt"])
+  
+  # Button to submit the form
+  if st.button("Submit"):
+      if name and email and message:
+        if uploaded_file is not None:
+          # Show the uploaded fiie ad it's details
+          st.write(f"Uploaded file: {uploaded_file.name} ({uploaded_file.type})")
+          # Here you could send the data to a database, email, or just display it
+        st.success("Thank you for reaching out! We will get back to you shortly.")
+        # Optionally, save the details to a file or send an email here
+      else:
+          st.error("Please fill in all fields.")
+  
 
   
 
