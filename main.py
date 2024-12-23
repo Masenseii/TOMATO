@@ -118,7 +118,6 @@ def predict_images_in_folder(folder_path, class_name, model):
 # Function to load the history of predictions
 # Path to store the prediction history
 HISTORY_FILE = "predictionhistory.csv"
-confidence = prediction_probs[predicted_class]
 def load_history():
     if os.path.exists(HISTORY_FILE):
         try:
@@ -133,6 +132,8 @@ def load_history():
 
 # Function to save a new prediction entry
 def save_prediction(image_name, predicted_class, confidence):
+    #Extract the confidence for the predicted class
+    confidence = prediction_probs[predicted_class]
     # Load the existing history
     history = load_history()
     
@@ -149,6 +150,7 @@ def save_prediction(image_name, predicted_class, confidence):
     
     # Save the updated history back to the CSV file
     history.to_csv(HISTORY_FILE, index=False)
+    print(f"Saved: {new_entry}")
 
 # Recommendations for tomato diseases
 recommendations = {
