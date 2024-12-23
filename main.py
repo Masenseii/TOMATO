@@ -442,6 +442,40 @@ elif app_mode == 'Feedback/Reviews':
       st.write("No reviews yet. Be the first to leave feedback!")
 
 elif app_mode == "Settings":
+  st.title("Settings")
+  st.subheader("Customize Your Preferences")
+
+    # Theme selection (Light/Dark mode)
+  theme = st.radio("Select Theme", ("Light", "Dark"))
+
+  if theme == "Dark":
+      st.write("You have selected the Dark theme.")
+        # You can customize the app theme or add dark-mode specific features here
+  else:
+      st.write("You have selected the Light theme.")
+    # Add light mode-specific features here
+
+    # Notification preferences
+  notifications = st.checkbox("Enable Notifications", value=True)
+  if notifications:
+    st.write("You will receive notifications.")
+  else:
+    st.write("Notifications are turned off.")
+
+    # User settings (e.g., update name or email)
+  st.subheader("Update User Information")
+  new_name = st.text_input("Enter your new name (Optional)")
+  new_email = st.text_input("Enter your new email (Optional)")
+
+    # Save settings
+  if st.button("Save Settings"):
+       if new_name or new_email:
+           st.success("Settings saved successfully!")
+            # Here, you can save the settings to a file or database
+            # For example, saving the updated name/email to a CSV or database
+       else:
+            st.warning("Please fill in at least one field to update.")
+
   
 
 
