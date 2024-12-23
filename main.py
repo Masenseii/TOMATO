@@ -333,7 +333,7 @@ elif app_mode == 'Disease Recognition':
         uploaded_file = st.file_uploader("Choose a tomato image...", type=["jpg", "jpeg", "png"])
         if uploaded_file is not None:
             image_name = uploaded_file.name  # Access the name only if the file is uploaded
-            st.image(uploaded_file, caption="Uploaded Image", use_column_width=True)
+            st.image(uploaded_file, caption="Uploaded Image", use_container_width=True)
         else:
              st.warning("Please upload an image.")
         if st.button('Show Image'):
@@ -371,6 +371,11 @@ elif app_mode == 'Disease Recognition':
         st.info("Please ensure your browser allows camera access to use this feature.")
 
         camera_image = st.camera_input("Take a picture")
+        if camera_image is not None:
+            image_name = camera_image.name  # Access the name only if the file is there
+            st.image(camera_image, caption="Taken Photo", use_container_width=True)
+        else:
+             st.warning("Please take a photo.")
         if st.button('Show Image'):
             if camera_image is not None:
                #open image taken
