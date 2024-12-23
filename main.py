@@ -441,7 +441,7 @@ elif app_mode == 'Feedback/Reviews':
   else:
       st.write("No reviews yet. Be the first to leave feedback!")
 
-elif app mode == "Settings":
+elif app_mode == "Settings":
   
 
 
