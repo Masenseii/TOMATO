@@ -228,7 +228,7 @@ def display_recommendation(predicted_class):
 # Creating the Streamlit app
 # Sidebar
 st.sidebar.title('Dashboard')
-app_mode = st.sidebar.selectbox('Select Page', ['Home', 'About', 'Disease Recognition'])
+app_mode = st.sidebar.selectbox('Select Page', ['Home', 'About', 'Disease Recognition', 'Feedback/Reviews'])
 
 # Home Page
 if app_mode == 'Home':
@@ -380,4 +380,6 @@ elif app_mode == 'Disease Recognition':
                 if predicted_class in recommendations:
                     # Display the recommendation for the predicted class
                      display_recommendation(predicted_class)
+
+elif app_mode == 'Feedback/Reviews':
       
