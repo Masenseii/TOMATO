@@ -421,10 +421,10 @@ elif app_mode == 'Disease Recognition':
                      time.sleep(0.05)  # Simulate some work
                 progress.progress(i + 1)
 
-                save_prediction(image_name, predicted_class, prediction_probs, recommendations)
                 if predicted_class in recommendations:
                     # Display the recommendation for the predicted class
                      display_recommendation(predicted_class)
+                     save_prediction(image_name, predicted_class, prediction_probs, recommendations[predicted_class])
 
 # feedback/Review
 elif app_mode == 'Feedback/Reviews':
