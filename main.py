@@ -113,6 +113,35 @@ def predict_images_in_folder(folder_path, class_name, model):
                  use_column_width=True)
 
 
+# DISEASE MANAGEMENT HISTORY FUNCTIONS
+# Function to load the history of predictions
+def load_history():
+    if os.path.exists(HISTORY_FILE):
+        return pd.read_csv(HISTORY_FILE)
+    else:
+        # Create a new dataframe if the file doesn't exist
+        return pd.DataFrame(columns=["Timestamp", "Image Name", "Disease Detected", "Confidence", "Recommended Actions"])
+
+# Function to save a new prediction entry
+def save_prediction(image_name, disease_detected, confidence, recommended_actions):
+    # Load the existing history
+    history = load_history()
+    
+    # Create a new record
+    new_entry = {
+        "Timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "Image Name": image_name,
+        "Disease Detected": disease_detected,
+        "Confidence": confidence,
+        "Recommended Actions": recommended_actions
+    }
+    
+    # Append the new entry to the history
+    history = history.append(new_entry, ignore_index=True)
+    
+    # Save the updated history back to the CSV file
+    history.to_csv(HISTORY_FILE, index=False)
+
 # Recommendations for tomato diseases
 recommendations = {
     "Tomato Leaf Miner Flies": {
@@ -231,6 +260,7 @@ st.sidebar.title('Dashboard')
 app_mode = st.sidebar.selectbox('Select Page', ['Home',
                                                 'About',
                                                 'Disease Recognition',
+                                                'Disease Management History',
                                                 'Feedback/Reviews',
                                                 'Settings'
                                                 ])
@@ -475,6 +505,24 @@ elif app_mode == "Settings":
             # For example, saving the updated name/email to a CSV or database
        else:
             st.warning("Please fill in at least one field to update.")
+
+elif app_mode == "Disease Management History":
+  # Path to store the prediction history
+  HISTORY_FILE = "predictionhistory.csv"
+
+  st.title("Disease Management History")
+  st.subheader("View the history of model predictions")
+
+    # Load the prediction history
+  history = load_history()
+
+  if not history.empty:
+      st.write("Here are the previous predictions made by the model:")
+
+        # Display the prediction history as a table
+      st.dataframe(history)
+  else:
+      st.write("No predictions have been made yet.")
 
   
 
