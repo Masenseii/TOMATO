@@ -128,7 +128,7 @@ def load_history():
         return pd.DataFrame(columns=["Timestamp", "Image Name", "Disease Detected", "Confidence", "Recommended Actions"])
 
 # Function to save a new prediction entry
-def save_prediction(image_name, disease_detected, confidence, recommended_actions):
+def save_prediction(image_name, predicted_class, confidence, recommendations):
     # Load the existing history
     history = load_history()
     
