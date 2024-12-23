@@ -125,13 +125,13 @@ def load_history():
             return pd.read_csv(HISTORY_FILE)
         except pd.errors.EmptyDataError:
             # If the file is empty, return an empty DataFrame with the correct columns
-            return pd.DataFrame(columns=["Timestamp", "Image Name", "Disease Detected", "Confidence", "Recommended Actions"])
+            return pd.DataFrame(columns=["Timestamp", "Image Name", "Disease Detected", "Confidence"])
     else:
         # Create a new DataFrame if the file doesn't exist
-        return pd.DataFrame(columns=["Timestamp", "Image Name", "Disease Detected", "Confidence", "Recommended Actions"])
+        return pd.DataFrame(columns=["Timestamp", "Image Name", "Disease Detected", "Confidence"])
 
 # Function to save a new prediction entry
-def save_prediction(image_name, predicted_class, prediction_probs, recommendations):
+def save_prediction(image_name, predicted_class, prediction_probs):
     # Load the existing history
     history = load_history()
     
@@ -140,8 +140,7 @@ def save_prediction(image_name, predicted_class, prediction_probs, recommendatio
         "Timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "Image Name": image_name,
         "Disease Detecte": predicted_class,
-        "Confidence": prediction_probs,
-        "Recommended Actions": recommendations
+        "Confidence": prediction_probs
     }
     
     # Append the new entry to the history
@@ -356,7 +355,7 @@ elif app_mode == 'Disease Recognition':
                                 time.sleep(0.05)  # Simulate some work
                             progress.progress(i + 1)
 
-                            save_prediction(image_name, predicted_class, prediction_probs, recommendations)
+                            save_prediction(image_name, predicted_class, prediction_probs)
 
                             if predicted_class in recommendations:
                                 # Display the recommendation for the predicted class
@@ -394,7 +393,7 @@ elif app_mode == 'Disease Recognition':
                                 time.sleep(0.05)  # Simulate some work
                             progress.progress(i + 1)
 
-                            save_prediction(image_name, predicted_class, prediction_probs, recommendations)
+                            save_prediction(image_name, predicted_class, prediction_probs)
                             if predicted_class in recommendations:
                                 # Display the recommendation for the predicted class
                                 display_recommendation(predicted_class)
@@ -424,7 +423,7 @@ elif app_mode == 'Disease Recognition':
                 if predicted_class in recommendations:
                     # Display the recommendation for the predicted class
                      display_recommendation(predicted_class)
-                     save_prediction(image_name, predicted_class, prediction_probs, recommendations[predicted_class])
+                     save_prediction(image_name, predicted_class, prediction_probs)
 
 # feedback/Review
 elif app_mode == 'Feedback/Reviews':
