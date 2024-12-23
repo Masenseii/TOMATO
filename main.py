@@ -353,7 +353,7 @@ elif app_mode == 'Disease Recognition':
                                 time.sleep(0.05)  # Simulate some work
                             progress.progress(i + 1)
 
-                            save_prediction(image_name, predicted_class, confidence, recommended_actions)
+                            save_prediction(image_name, predicted_class, prediction_probs, recommended_actions)
 
                             if predicted_class in recommendations:
                                 # Display the recommendation for the predicted class
@@ -391,7 +391,7 @@ elif app_mode == 'Disease Recognition':
                                 time.sleep(0.05)  # Simulate some work
                             progress.progress(i + 1)
 
-                            save_prediction(image_name, predicted_class, confidence, recommended_actions)
+                            save_prediction(image_name, predicted_class, prediction_probs, recommended_actions)
                             if predicted_class in recommendations:
                                 # Display the recommendation for the predicted class
                                 display_recommendation(predicted_class)
@@ -418,7 +418,7 @@ elif app_mode == 'Disease Recognition':
                      time.sleep(0.05)  # Simulate some work
                 progress.progress(i + 1)
 
-                save_prediction(image_name, predicted_class, confidence, recommended_actions)
+                save_prediction(image_name, predicted_class, prediction_probs, recommended_actions)
                 if predicted_class in recommendations:
                     # Display the recommendation for the predicted class
                      display_recommendation(predicted_class)
