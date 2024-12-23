@@ -140,7 +140,7 @@ def save_prediction(image_name, predicted_class, prediction_probs, recommendatio
         "Timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "Image Name": image_name,
         "Disease Detecte": predicted_class,
-        "Confidence": probability_probs,
+        "Confidence": prediction_probs,
         "Recommended Actions": recommendations
     }
     
