@@ -115,6 +115,8 @@ def predict_images_in_folder(folder_path, class_name, model):
 
 # DISEASE MANAGEMENT HISTORY FUNCTIONS
 # Function to load the history of predictions
+# Path to store the prediction history
+HISTORY_FILE = "predictionhistory.csv"
 def load_history():
     if os.path.exists(HISTORY_FILE):
         try:
@@ -514,9 +516,7 @@ elif app_mode == "Settings":
             st.warning("Please fill in at least one field to update.")
 
 elif app_mode == "Disease Management History":
-  # Path to store the prediction history
-  HISTORY_FILE = "predictionhistory.csv"
-
+  
   st.title("Disease Management History")
   st.subheader("View the history of model predictions")
 
