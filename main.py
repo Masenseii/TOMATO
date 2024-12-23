@@ -19,8 +19,8 @@ class_name = ['Bacterial Spot__Blight',
               'Not Recognized',
               'Tobacco Caterpillar',
               'Tomato Healthy',
-              'Tomato Leaf Miner Flies',
-              'Tomato Leaf Curl']
+              'Tomato Leaf Curl',
+              'Tomato Leaf Miner Flies']
 
 # Loading the trained model
 @st.cache_resource
