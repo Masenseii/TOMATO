@@ -335,7 +335,6 @@ elif app_mode == 'Disease Recognition':
             st.image(uploaded_file, caption="Uploaded Image", use_column_width=True)
         else:
              st.warning("Please upload an image.")
-        image_name = uploaded_file.name
         if st.button('Show Image'):
             if uploaded_file is not None:
                 st.image(uploaded_file, caption='Uploaded Image', use_container_width=True)
