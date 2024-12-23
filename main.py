@@ -26,7 +26,7 @@ class_name = ['Bacterial spot__Blight',
 @st.cache_resource
 def load_model():
   try:
-    model = tf.keras.models.load_model('Tomato_model_best.keras')
+    model = tf.keras.models.load_model('./.devcontainer/NTomato_model_best.keras')
     st.write("Model loaded")
     print(model.summary())
     return model
@@ -122,7 +122,7 @@ recommendations = {
             "Yellowing and wilting of affected leaves.",
             "Damaged leaves may drop prematurely (defoliation)."
         ],
-        "Image": "Leaf Miner.jpg",  # Leaf miner image path
+        "Image": "./.devcontainer/Leaf Miner.jpg",  # Leaf miner image path
         "Actions": [
             "Prune and destroy infested leaves which may still harbor the larvae.",
             "Encourage natural predators like parasitic wasps or predatory mirid bugs which disrupt the growth of the larvae in leaves.",
@@ -139,7 +139,7 @@ recommendations = {
             "Stunted plant growth.",
             "Yellowing of leaf margins."
         ],
-        "Image": "Leaf Curl.jpg",  # Tomato leaf curl image path
+        "Image": "./.devcontainer/Leaf Curl.jpg",  # Tomato leaf curl image path
         "Actions": [
             "Control whiteflies, which transmit the virus, using sticky traps.",
             "Remove and destroy infected plants immediately.",
@@ -157,7 +157,7 @@ recommendations = {
             "Chewed fruits and stems.",
             "Presence of caterpillars on plants."
         ],
-        "Image": "Tobacco Caterpillar.jpg",  # Tobacco Caterpillar image path
+        "Image": "./.devcontainer/Tobacco Caterpillar.jpg",  # Tobacco Caterpillar image path
         "Actions": [
             "Handpick caterpillars and destroy them.",
             "Encourage natural predators like birds or beneficial insects.",
@@ -177,7 +177,7 @@ recommendations = {
             "Black or brown lesions on older leaves (early blight).",
             "Greasy-looking, gray-green lesions on leaves (late blight)."
         ],
-        "Image": "Bacterial Spot.jpg",  # Bacterial spot image path
+        "Image": "./.devcontainer/Bacterial Spot.jpg",  # Bacterial spot image path
         "Actions": [
             "Remove and destroy infected plant parts immediately.",
             "Avoid overhead watering to reduce moisture on foliage.",
