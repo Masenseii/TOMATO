@@ -381,5 +381,55 @@ elif app_mode == 'Disease Recognition':
                     # Display the recommendation for the predicted class
                      display_recommendation(predicted_class)
 
+# feedback/Review
 elif app_mode == 'Feedback/Reviews':
-      
+  FEEDBACK_FILE = "feedback.csv"
+  # Load feedback
+  def load_feedback():
+      try:
+          return pd.read_csv(FEEDBACK_FILE)
+      except FileNotFoundError:
+          return pd.DataFrame(columns=["Name", "Email", "Rating", "Feedback", "Date"])
+
+  # Save feedback
+  def save_feedback(data):
+      data.to_csv(FEEDBACK_FILE, index=False)
+
+  # Feedback form
+  st.title("Feedback and Reviews")
+  st.subheader("We value your feedback!")
+  with st.form("feedback_form"):
+      name = st.text_input("Name (Optional)")
+      email = st.text_input("Email (Optional)")
+      rating = st.slider("Rate your experience (1 - Poor, 5 - Excellent)", 1, 5, 3)
+      feedback = st.text_area("Your Feedback")
+      submitted = st.form_submit_button("Submit Feedback")
+
+  if submitted:
+      if feedback.strip():  # Ensure feedback is not empty
+          feedback_data = load_feedback()
+          new_entry = pd.DataFrame({
+              "Name": [name],
+              "Email": [email],
+              "Rating": [rating],
+              "Feedback": [feedback],
+              "Date": [pd.Timestamp.now()]
+          })
+          feedback_data = pd.concat([feedback_data, new_entry], ignore_index=True)
+          save_feedback(feedback_data)
+          st.success("Thank you for your feedback!")
+      else:
+          st.error("Please provide some feedback before submitting.")
+
+  # Display feedback
+  st.subheader("User Reviews")
+  feedback_data = load_feedback()
+  if not feedback_data.empty:
+      for _, row in feedback_data.iterrows():
+          st.markdown(f"**{row['Name'] or 'Anonymous'}** ({row['Date'][:10]}):")
+          st.markdown(f"Rating: {'⭐' * row['Rating']}")
+          st.write(row['Feedback'])
+          st.write("---")
+  else:
+      st.write("No reviews yet. Be the first to leave feedback!")
+    
