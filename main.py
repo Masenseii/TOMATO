@@ -330,6 +330,11 @@ elif app_mode == 'Disease Recognition':
     if input_option == "upload from device":
         #Allow user to upload an image file
         uploaded_file = st.file_uploader("Choose a tomato image...", type=["jpg", "jpeg", "png"])
+        if uploaded_file is not None:
+            image_name = uploaded_file.name  # Access the name only if the file is uploaded
+            st.image(uploaded_file, caption="Uploaded Image", use_column_width=True)
+        else:
+             st.warning("Please upload an image.")
         image_name = uploaded_file.name
         if st.button('Show Image'):
             if uploaded_file is not None:
