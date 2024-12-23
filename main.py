@@ -80,7 +80,7 @@ def predict(image_path, model):
         print("Prediction probabilities:", prediction_probs)  # Log prediction probabilities
         print("Predicted class index:", result_index)  # Log predicted class index
 
-        return result_index, prediction_probs, confidence
+        return result_index, confidence
     except Exception as e:
         st.error(f"Error during prediction: {e}")
         return None, None
