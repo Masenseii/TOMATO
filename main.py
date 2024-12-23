@@ -386,10 +386,13 @@ elif app_mode == 'Feedback/Reviews':
   FEEDBACK_FILE = "feedback.csv"
   # Load feedback
   def load_feedback():
-      try:
-          return pd.read_csv(FEEDBACK_FILE)
-      except FileNotFoundError:
-          return pd.DataFrame(columns=["Name", "Email", "Rating", "Feedback", "Date"])
+    try:
+        data = pd.read_csv(FEEDBACK_FILE)
+        if data.empty:
+            return pd.DataFrame(columns=["Name", "Email", "Rating", "Feedback", "Date"])
+        return data
+    except (FileNotFoundError, pd.errors.EmptyDataError):
+        return pd.DataFrame(columns=["Name", "Email", "Rating", "Feedback", "Date"])
 
   # Save feedback
   def save_feedback(data):
