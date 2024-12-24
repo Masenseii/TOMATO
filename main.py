@@ -409,7 +409,7 @@ elif app_mode == 'Disease Recognition':
 
         camera_image = st.camera_input("Take a picture")
 
-      if camera_image is not None:
+        if camera_image is not None:
             image_name = camera_image.name  # Access the name only if the file is there
             st.image(camera_image, caption="Taken Photo", use_container_width=True)
         else:
