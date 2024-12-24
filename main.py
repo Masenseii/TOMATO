@@ -408,7 +408,8 @@ elif app_mode == 'Disease Recognition':
         st.info("Please ensure your browser allows camera access to use this feature.")
 
         camera_image = st.camera_input("Take a picture")
-        if camera_image is not None:
+        
+      if camera_image is not None:
             image_name = camera_image.name  # Access the name only if the file is there
             st.image(camera_image, caption="Taken Photo", use_container_width=True)
         else:
@@ -450,28 +451,38 @@ elif app_mode == 'Disease Recognition':
       st.info("This option will trigger the CSI camera to capture an image.")
       #Button to trigger CSI Camera
       if st.button('Start Image Capture'):
-        image = Image.open(image_path)
-        image_name = image.name 
-        st.image(image, caption="Captured Image", use_container_width=True)
+         with st.spinner('Capturing Image...'):
+              captured_image_path = captured_image()
+              st.session_state.captured_image = captured_image_path
+         st.success('Image Captured!')
+
+      #Showing captured image
+      
+      if st.session_state.captured_image:
+         image_path = st.session_state.captured_image
+         if st.button('Show captured Image'):
+            image = Image.open(image_path)
+            st.image(image, caption="Captured Image", use_container_width=True)
+           image_name = caption
 
         #Prediction Button
-        if st.button('Predict'):
-          with st.spinner('Please wait...'):
-            model = load_model() # Load the model
-            if model:
-              result_index, prediction_probs = predict(image_path, model)
-              if result_index is not None:
-                predicted_class = class_name[result_index]
-                st.success(f'Model is predicting it is {Predicted_class}')
-                progress = st.progress(0)
-                for i in range(100):
-                     time.sleep(0.05)  # Simulate some work
-                progress.progress(i + 1)
+         if st.button('Predict'):
+           with st.spinner('Please wait...'):
+             model = load_model() # Load the model
+             if model:
+               result_index, prediction_probs = predict(image_path, model)
+               if result_index is not None:
+                 predicted_class = class_name[result_index]
+                 st.success(f'Model is predicting it is {Predicted_class}')
+                 progress = st.progress(0)
+                 for i in range(100):
+                      time.sleep(0.05)  # Simulate some work
+                 progress.progress(i + 1)
 
-                if predicted_class in recommendations:
-                    # Display the recommendation for the predicted class
-                     display_recommendation(predicted_class)
-                     save_prediction(image_name, predicted_class)
+                 if predicted_class in recommendations:
+                     # Display the recommendation for the predicted class
+                      display_recommendation(predicted_class)
+                      save_prediction(image_name, predicted_class)
 
 # feedback/Review
 elif app_mode == 'Feedback/Reviews':
