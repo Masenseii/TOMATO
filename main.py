@@ -463,7 +463,7 @@ elif app_mode == 'Disease Recognition':
          if st.button('Show captured Image'):
             image = Image.open(image_path)
             st.image(image, caption="Captured Image", use_container_width=True)
-           image_name = caption
+            image_name = caption
 
         #Prediction Button
          if st.button('Predict'):
