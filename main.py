@@ -149,6 +149,43 @@ def save_prediction(image_name, predicted_class):
     history.to_csv(HISTORY_FILE, index=False)
     print(f"Saved: {new_entry}")
 
+# The settings page
+# Apply custom CSS for themes
+def apply_theme(theme):
+    if theme == "Dark":
+        st.markdown(
+            """
+            <style>
+            body {
+                background-color: #1E1E1E;
+                color: white;
+            }
+            .stButton>button {
+                background-color: #444;
+                color: white;
+            }
+            </style>
+            """,
+            unsafe_allow_html=True,
+        )
+    elif theme == "Light":
+        st.markdown(
+            """
+            <style>
+            body {
+                background-color: white;
+                color: black;
+            }
+            .stButton>button {
+                background-color: #f0f0f0;
+                color: black;
+            }
+            </style>
+            """,
+            unsafe_allow_html=True,
+        )
+
+
 # Recommendations for tomato diseases
 recommendations = {
     "Tomato Leaf Miner Flies": {
@@ -497,6 +534,8 @@ elif app_mode == "Settings":
 
     # Theme selection (Light/Dark mode)
   theme = st.radio("Select Theme", ("Light", "Dark"))
+  # Apply the selected theme
+  apply_theme(theme)
 
   if theme == "Dark":
       st.write("You have selected the Dark theme.")
