@@ -606,7 +606,7 @@ elif app_mode == "Contact/Support":
           st.error("Please fill in all fields.")
   # Contact Information Section
   st.write("### Or reach us directly:")
-  st.write("You can also contact us via phone for quicker assistance:")
+  st.write("You can also contact us via phone or email for quicker assistance:")
     
   # phone numbers
   st.write("📞 **Phone Number**: +254724429600")
