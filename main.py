@@ -609,11 +609,13 @@ elif app_mode == "Contact/Support":
   st.write("You can also contact us via phone for quicker assistance:")
     
   # phone numbers
+  st.write("📞 **Phone Number**: +254724429600")
   st.write("📞 **Phone Number**: +254714839612")
   st.write("📞 **Phone Number**: +254725428512")
   st.write("📞 **Phone Number**: +254734404781")
     
   # Optional: You can also provide an email address if needed
+  st.write("📧 **Email**: joseph.muguro@dkut.ac.ke")
   st.write("📧 **Email**: sharleensiele@gmail.com")
   st.write("📧 **Email**: brunoshedy@gmail.com")
   st.write("📧 **Email**: markire.07@gmail.com")
