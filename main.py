@@ -550,10 +550,10 @@ elif app_mode == "Settings":
 
   if theme == "Dark":
       st.write("You have selected the Dark theme.")
-        # You can customize the app theme or add dark-mode specific features here
+
   else:
       st.write("You have selected the Light theme.")
-    # Add light mode-specific features here
+
 
     # Notification preferences
   notifications = st.checkbox("Enable Notifications", value=True)
@@ -572,7 +572,7 @@ elif app_mode == "Settings":
        if new_name or new_email:
            st.success("Settings saved successfully!")
             # Here, you can save the settings to a file or database
-            # For example, saving the updated name/email to a CSV or database
+
        else:
             st.warning("Please fill in at least one field to update.")
 
